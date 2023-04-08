@@ -5,8 +5,9 @@
 #include "plane.h"
 
 int main() {
-    user *user1 = (user*)malloc(sizeof(user1));
+
     printf("Hello, World你好好你好!\n");
+//    user *user1 = (user*)malloc(sizeof(user1));
 //    scanf("%s",user1->name);
     ShowMenu1();
     return 0;
