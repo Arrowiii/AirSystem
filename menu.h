@@ -12,6 +12,6 @@ void ShowMenu2();//显示菜单2 用户注册登录界面
 void ShowMenu3();//显示菜单3 管理员登录界面
 void ShowMenu4();//显示菜单4 用户功能界面
 void ShowMenu5();//显示菜单5 管理员功能界面
-int GetChoice();//
+int GetChoice();//获得一个整型的输入值
 
 #endif //AIRSYSTEM_MENU_H
