@@ -1,13 +1,13 @@
 #include "user.h"
 
 user userlist[20];
-user *GetUserInfo(user* usernow){
-    printf("请输入姓名");
+
+user *GetUserInfo(user* usernow,char* name){
+    DownloadUserlist();
     int exist = 0;
-    int numbernow;
-    scanf("%s",usernow->name);
+    strcpy(usernow->name, name);
     for(int i = 0; i < 20; i++) {
-        if (usernow->name == userlist[i].name) {
+        if (strcmp(usernow->name, userlist[i].name) == 0 ) {
             exist = 1;
             break;
         }
@@ -20,75 +20,74 @@ user *GetUserInfo(user* usernow){
         printf("请输入密保问题");scanf("%s",usernow->question);
         printf("请输入密保答案");scanf("%s",usernow->answer);
     }
-    else printf("Error !name already existed");
+    else {
+        printf("Error !name already existed");
+    }
     return usernow;
 }//输入一个用户信息，存入usernow中并返回
 
-void AddToUserlist(){
-    FILE *fp;
-    char *name;
+void AddToUserlist (char *name){
+
     user *userAlice = (user*)malloc(sizeof(userAlice)) ;
-    userAlice = GetUserInfo(userAlice);
-
-    int exist = 0;
-    fp = fopen("userlist.txt", "a+");
-    if(fp == NULL){
+    userAlice = GetUserInfo(userAlice,name);
+    for(int i = 0; i < 20; i++){
+        if(userlist[i].name == ""){
+            memcpy(&userlist[i], &userAlice, sizeof(user));
+        }
+    }
+    UploadUserlist();
+}
+void UploadUserlist(){
+    FILE *fp = fopen("userlist.txt", "w");//清空原有内容后写入
+    if (fp == NULL) {
         printf("文件打开失败！\n");
-        exit(1);
+        exit(1);// 打开文件失败，处理错误
     }
 
-//    printf("请输入姓名");scanf("%s",name);
-//    for(int i = 0; i < 20; i++){
-//        if(userlist[i].name == userAlice->name){
-//            printf("Error !name already existed");
-//            exist = 1;
-//        }
-//    }
-    if(!exist){//如果姓名不存在
-        fprintf(fp,"%s %s %s %s %s %s %d\n",
-                userAlice->name,userAlice->idnumber,userAlice->phonenumber,
-                userAlice->password,userAlice->question,userAlice->answer,userAlice->notAd);
-//        strcpy(userlist[1].name,name);
-//        printf("请输入账号");scanf("%s",userlist[1].idnumber);
-//        printf("请输入电话号码");scanf("%s",userlist[1].phonenumber);
-//        printf("请输入密码");scanf("%s",userlist[1].password);
-//        printf("请输入密保问题");scanf("%s",userlist[1].question);
-//        printf("请输入密保答案");scanf("%s",userlist[1].answer);
-
-
-        fprintf(fp,"%s %s %s %s %s %s %d\n",
-                userlist[1].name,userlist[1].idnumber,userlist[1].phonenumber,
-                userlist[1].password,userlist[1].question,userlist[1].answer,userlist[1].notAd);
+    for (int i = 0; i < 20; i++) {
+        if (strlen(userlist[i].name) > 0) {
+            // 假设 name 成员变量为空表示该元素未被使用
+            fprintf(fp, "%s %s %s %s %s %s %d\n",
+                    userlist[i].name,
+                    userlist[i].idnumber,
+                    userlist[i].phonenumber,
+                    userlist[i].password,
+                    userlist[i].question,
+                    userlist[i].answer,
+                    userlist[i].notAd);
+        }
     }
-
-//    for(int i = 0; i < 20 ;i++){
-//
-//    }
     fclose(fp);
 }
-void RefreshUserlist(){
+
+void DownloadUserlist(){
+
     FILE *fp;
     fp = fopen("userlist.txt", "a+");
     if(fp == NULL){
         printf("文件打开失败！\n");
         exit(1);
     };
+    for (int i = 0; i < 20; i++) {
+        memset(&userlist[i], 0, sizeof(user));
+    }//下载前初始化数组
     for(int i = 0; i < 20; i++){
         fscanf(fp,"%s %s %s %s %s %s %d\n",
-                userlist[i].name,userlist[i].idnumber,userlist[i].phonenumber,
-                userlist[i].password,userlist[i].question,userlist[i].answer,&userlist[i].notAd);
+                userlist[i].name,
+                userlist[i].idnumber,
+                userlist[i].phonenumber,
+                userlist[i].password,
+                userlist[i].question,
+                userlist[i].answer,
+                &userlist[i].notAd);
     }
     fclose(fp);
 }
 void ShowUserlist(){
-    FILE *fp;
-    fp = fopen("userlist.txt", "a+");
-    if(fp == NULL){
-        printf("文件打开失败！\n");
-        exit(1);
-    };
+    DownloadUserlist();
+    printf("当前所有用户信息如下:\n");
     for(int i = 0; i < 20; i++){
-        if(userlist[i].name == "")  break;
+        if(strlen(userlist[i].name) == 0)  continue;
         printf("%s %s %s %s %s %s\n",
                userlist[i].name,userlist[i].idnumber,userlist[i].phonenumber,
                userlist[i].password,userlist[i].question,userlist[i].answer);
@@ -96,30 +95,23 @@ void ShowUserlist(){
     }
 }
 void UserRegistration(){
-    user u;
-    printf("请输入姓名：");
-    scanf("%s", u.name);
-    printf("请输入身份证号：");
-    scanf("%s", u.idnumber);
-    printf("请输入手机号：");
-    scanf("%s", u.phonenumber);
-    printf("请输入密码：");
-    scanf("%s", u.password);
-    printf("请输入密保验证问题：");
-    scanf("%s", u.question);
-    printf("请输入密保答案：");
-    scanf("%s", u.answer);
-
-    FILE *fp;
-    fp = fopen("user.txt", "a+");
-    if(fp == NULL){
-        printf("文件打开失败！\n");
-        exit(1);
+    DownloadUserlist();
+    char newname[20];
+    int exist = 0;
+    printf("请输入你的昵称:\n");
+    scanf("%s",newname);
+    for (int i = 0; i < 20; i++) {
+        if (strcmp(newname, userlist[i].name) == 0) {
+            printf("输入的姓名已存在于 %d 处\n", i);
+            exist = 1;
+            break;
+        }
     }
-
-    fprintf(fp, "%s %s %s %s %s %s\n", u.name, u.idnumber, u.phonenumber, u.password, u.question, u.answer);
-
-    fclose(fp);
+    if(!exist){
+        AddToUserlist(newname);
+        UploadUserlist();
+    }
+    else return;
 }
 void UserLogin(){
     ;

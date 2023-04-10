@@ -11,7 +11,8 @@ int main() {
 //    user *user1 = (user*)malloc(sizeof(user1));
 //    scanf("%s",user1->name);
 //    ShowMenu1();
-    RefreshUserlist();
+    DownloadUserlist();
+    UserRegistration();
     ShowUserlist();
     return 0;
 }
