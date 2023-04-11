@@ -3,7 +3,7 @@
 user userlist[20];
 int usernum;
 
-void *GetUserInfo(char* name){
+void GetUserInfo(char* name){
     DownloadUserlist();
     user* usernow = (user*)malloc(sizeof(user));
     int exist = 0;
