@@ -131,11 +131,72 @@ void UserRegistration(){
     else return;
 }
 void UserLogin(){
-    ;
+    DownloadUserlist();
+    char inputName[20], inputPassword[20];
+    printf("请输入您的姓名：");
+    scanf("%s", inputName);
+
+    int i;
+    for (i = 0; i < usernum; i++) {
+        if (strcmp(userlist[i].name, inputName) == 0) {
+            printf("欢迎回来，%s！\n", inputName);
+
+            printf("请输入您的密码：");
+            scanf("%s", inputPassword);
+
+            if (strcmp(userlist[i].password, inputPassword) == 0) {
+                printf("登录成功！\n");
+            } else {
+                printf("密码错误！\n");
+            }
+
+            break;
+        }
+    }
+
+    if (i == usernum) {
+        printf("该用户不存在！\n");
+    }
+    return;
 }
 
-void PasswordRetrieve(){
-    ;
+void PasswordRetrieve() {
+    DownloadUserlist();
+    char inputName[20], inputID[20], newPassword1[20], newPassword2[20];
+    printf("请输入您的姓名：");
+    scanf("%s", inputName);
+    int i;
+    for (i = 0; i < usernum; i++) {
+        if (strcmp(userlist[i].name, inputName) == 0) {
+            printf("欢迎回来，%s！\n", inputName);
+            printf("请输入你的身份证号");
+            scanf("%s",inputID);
+            if(strcmp(userlist[i].idnumber, inputID) == 0) {
+                printf("身份证号正确,请输入要更改的密码\n");
+                scanf("%s", newPassword1);
+                printf("请再次输入一遍\n");
+                scanf("%s", newPassword2);
+                if (strcmp(newPassword1, newPassword2) == 0) {
+                    strcpy(userlist[i].password, newPassword1);
+                    printf("密码已修改!");
+                } else {
+                    printf("错误!请输入相同密码\n");
+                    PasswordRetrieve();
+                }
+                break;
+            }
+            else{
+                printf("身份证号错误，不予修改\n");
+                break;
+            }
+        }
+        else{
+            printf("查无此人哦!");
+            break;
+        }
+    }
+    UploadUserlist();
+    return;
 }
 void AdministratorLogin(){
     ;
