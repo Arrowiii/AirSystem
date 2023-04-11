@@ -13,7 +13,7 @@ user *GetUserInfo(user* usernow,char* name){
         }
     }
     if(!exist){
-        strcpy(userlist[1].name,usernow->name);
+        strcpy(usernow->name,name);
         printf("请输入账号");scanf("%s",usernow->idnumber);
         printf("请输入电话号码");scanf("%s",usernow->phonenumber);
         printf("请输入密码");scanf("%s",usernow->password);
@@ -28,10 +28,10 @@ user *GetUserInfo(user* usernow,char* name){
 
 void AddToUserlist (char *name){
 
-    user *userAlice = (user*)malloc(sizeof(userAlice)) ;
+    user *userAlice = (user*)malloc(sizeof(user)) ;
     userAlice = GetUserInfo(userAlice,name);
     for(int i = 0; i < 20; i++){
-        if(userlist[i].name == ""){
+        if(strlen(userlist[i].name) == 0){
             memcpy(&userlist[i], &userAlice, sizeof(user));
         }
     }
@@ -63,24 +63,35 @@ void UploadUserlist(){
 void DownloadUserlist(){
 
     FILE *fp;
-    fp = fopen("userlist.txt", "a+");
+    fp = fopen("userlist.txt", "r");
     if(fp == NULL){
         printf("文件打开失败！\n");
         exit(1);
     };
-    for (int i = 0; i < 20; i++) {
-        memset(&userlist[i], 0, sizeof(user));
-    }//下载前初始化数组
-    for(int i = 0; i < 20; i++){
-        fscanf(fp,"%s %s %s %s %s %s %d\n",
-                userlist[i].name,
-                userlist[i].idnumber,
-                userlist[i].phonenumber,
-                userlist[i].password,
-                userlist[i].question,
-                userlist[i].answer,
-                &userlist[i].notAd);
+//    for (int i = 0; i < 20; i++) {
+//        memset(&userlist[i], 1, sizeof(user));
+//    }//下载前初始化数组
+    int i = 0;
+    while(fscanf(fp,"%s %s %s %s %s %s %d\n",
+                 userlist[i].name,
+                 userlist[i].idnumber,
+                 userlist[i].phonenumber,
+                 userlist[i].password,
+                 userlist[i].question,
+                 userlist[i].answer,
+                 &userlist[i].notAd) != EOF && i < 20){
+        i++;
     }
+//    for(int i = 0; i < 20; i++){
+//        fscanf(fp,"%s %s %s %s %s %s %d\n",
+//                userlist[i].name,
+//                userlist[i].idnumber,
+//                userlist[i].phonenumber,
+//                userlist[i].password,
+//                userlist[i].question,
+//                userlist[i].answer,
+//                &userlist[i].notAd);
+//    }
     fclose(fp);
 }
 void ShowUserlist(){
@@ -89,16 +100,21 @@ void ShowUserlist(){
     for(int i = 0; i < 20; i++){
         if(strlen(userlist[i].name) == 0)  continue;
         printf("%s %s %s %s %s %s\n",
-               userlist[i].name,userlist[i].idnumber,userlist[i].phonenumber,
-               userlist[i].password,userlist[i].question,userlist[i].answer);
-
+               userlist[i].name,
+               userlist[i].idnumber,
+               userlist[i].phonenumber,
+               userlist[i].password,
+               userlist[i].question,
+               userlist[i].answer);
+        if(!userlist[i].notAd)
+            printf("上面的用户是管理\n");
     }
 }
 void UserRegistration(){
     DownloadUserlist();
     char newname[20];
     int exist = 0;
-    printf("请输入你的昵称:\n");
+    printf("请输入您要注册的姓名:\n");
     scanf("%s",newname);
     for (int i = 0; i < 20; i++) {
         if (strcmp(newname, userlist[i].name) == 0) {
@@ -116,7 +132,6 @@ void UserRegistration(){
 void UserLogin(){
     ;
 }
-
 
 void PasswordRetrieve(){
     ;
