@@ -199,5 +199,35 @@ void PasswordRetrieve() {
     return;
 }
 void AdministratorLogin(){
-    ;
+    DownloadUserlist();
+    char inputName[20], inputPassword[20];
+    printf("请输入您的姓名：");
+    scanf("%s", inputName);
+
+    int i;
+    for (i = 0; i < usernum; i++) {
+        if (strcmp(userlist[i].name, inputName) == 0 && userlist->notAd == 0) {
+            printf("欢迎回来，%s！\n", inputName);
+
+            printf("请输入您的密码：");
+            scanf("%s", inputPassword);
+
+            if (strcmp(userlist[i].password, inputPassword) == 0) {
+                printf("登录成功！\n");
+            } else {
+                printf("密码错误！\n");
+            }
+
+            break;
+        }
+        else {
+            printf("错误！您不是管理或您不是人\n");
+            break;
+        }
+    }
+
+    if (i == usernum) {
+        printf("该用户不存在！\n");
+    }
+    return;
 }
