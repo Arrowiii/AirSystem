@@ -100,7 +100,8 @@ void ShowUserlist(){
     printf("当前所有用户信息如下:\n");
     for(int i = 0; i < 20; i++){
         if(strlen(userlist[i].name) == 0)  continue;
-        printf("%s %s %s %s %s %s\n",
+        printf("%d::%s %s %s %s %s %s\n",
+               i,
                userlist[i].name,
                userlist[i].idnumber,
                userlist[i].phonenumber,
@@ -130,7 +131,8 @@ void UserRegistration(){
     }
     else return;
 }
-void UserLogin(){
+int UserLogin(){
+    int OK = 0;
     DownloadUserlist();
     char inputName[20], inputPassword[20];
     printf("请输入您的姓名：");
@@ -146,6 +148,7 @@ void UserLogin(){
 
             if (strcmp(userlist[i].password, inputPassword) == 0) {
                 printf("登录成功！\n");
+                OK = 1;
             } else {
                 printf("密码错误！\n");
             }
@@ -157,7 +160,7 @@ void UserLogin(){
     if (i == usernum) {
         printf("该用户不存在！\n");
     }
-    return;
+    return OK;
 }
 
 void PasswordRetrieve() {
@@ -198,7 +201,8 @@ void PasswordRetrieve() {
     UploadUserlist();
     return;
 }
-void AdministratorLogin(){
+int AdministratorLogin(){
+    int OK = 0;
     DownloadUserlist();
     char inputName[20], inputPassword[20];
     printf("请输入您的姓名：");
@@ -214,6 +218,7 @@ void AdministratorLogin(){
 
             if (strcmp(userlist[i].password, inputPassword) == 0) {
                 printf("登录成功！\n");
+                OK = 1;
             } else {
                 printf("密码错误！\n");
             }
@@ -229,5 +234,31 @@ void AdministratorLogin(){
     if (i == usernum) {
         printf("该用户不存在！\n");
     }
-    return;
+    return OK;
+}
+void ChangeUserPhonenumber(){
+    int num;
+    char newphonenumber[20];
+    DownloadUserlist();
+    printf("用户信息如下\n");
+    ShowUserlist();
+    printf("请输入你想修改的用户编号\n");
+    scanf("%d",&num);
+    printf("当前用户手机号为%s，请输入修改后的手机号\n",userlist[num].phonenumber);
+    scanf("%s",newphonenumber);
+    strcpy(userlist[num].phonenumber, newphonenumber);
+    printf("修改后%s用户的手机号为::%s",userlist[num].name,userlist[num].phonenumber);
+    UploadUserlist();
+}
+void InitializeUserPassword(){
+    int num;
+    char* originpassword = "000000";
+    DownloadUserlist();
+    printf("用户信息如下\n");
+    ShowUserlist();
+    printf("请输入你想应用初始化的用户编号\n");
+    scanf("%d",&num);
+    strcpy(userlist[num].password, originpassword);
+    printf("用户%s的密码已经成功初始化!\n",userlist[num].name);
+    UploadUserlist();
 }

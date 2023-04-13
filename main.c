@@ -16,6 +16,11 @@ int main() {
 //    ShowUserlist();
 //    UserLogin();
 //    PasswordRetrieve();
-    AdministratorLogin();
+//    AdministratorLogin();
+//    ChangeUserPhonenumber();
+//    InitializeUserPassword();
+    DownloadPlanelist();
+    ShowPlanelist();
+    UploadPlanelist();
     return 0;
 }

@@ -28,4 +28,9 @@ typedef struct plane{
     float price;//单程价格
 }plane;//飞机
 
+typedef struct order{
+//    char usernumber;
+//    char [10];
+//    int number;
+};
 #endif //AIRSYSTEM_TOURISTINFO_H

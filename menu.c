@@ -18,10 +18,16 @@ void ShowMenu1() {//main menu
 
         switch(choice)
         {
-            case 1:ShowMenu2();break;
-            case 2:ShowMenu3();break;
-            case 3:;break;
-            case 4:;return;
+            case 1:
+                ShowMenu2();
+                break;
+            case 2:
+                ShowMenu3();
+                break;
+            case 3:
+                break;
+            case 4:
+                return;
             default:
                 printf("错误，请在给定的序号中选择\n");
         }
@@ -35,10 +41,19 @@ void ShowMenu2(){//user login menu
     int choice = GetChoice();
     switch(choice)
     {
-        case 1:UserLogin();ShowMenu4();break;
-        case 2:UserRegistration();break;
-        case 3:PasswordRetrieve();break;
-        case 4:return;
+        case 1:
+            if(UserLogin()){
+                ShowMenu4();
+            }
+            break;
+        case 2:
+            UserRegistration();
+            break;
+        case 3:
+            PasswordRetrieve();
+            break;
+        case 4:
+            return;
         default:
             printf("错误，请在给定的序号中选择\n");
     }
@@ -52,8 +67,13 @@ void ShowMenu3(){//administrator login menu
     int choice = GetChoice();
     switch(choice)
     {
-        case 1: ;ShowMenu5();break;
-        case 2:;return;
+        case 1:
+            if(AdministratorLogin()){
+                ShowMenu5();
+            }
+            break;
+        case 2:
+            return;
         default:
             printf("错误，请在给定的序号中选择\n");
     }
@@ -83,14 +103,18 @@ void ShowMenu4(){ //user menu
 void ShowMenu5(){//administrator menu
     printf("\n\n欢迎来到管理员功能界面\n");
     printf("请选择你要执行的操作\n");
-    printf("1.预定航班\n2.查询航班\n3.用户统计\n4.修改航班信息\n5.返回上页\n");
+    printf("1.查看预定情况\n2.修改用户手机号\n3.初始化用户密码\n4.修改航班信息\n5.返回上页\n");
     int choice = GetChoice();
     switch(choice)
     {
         case 1:;break;
-        case 2:;break;
-        case 3:;break;
-        case 4:;break;
+        case 2:
+            ChangeUserPhonenumber();
+            break;
+        case 3:
+            InitializeUserPassword();
+            break;
+        case 4:break;
         case 5:;return;
         default:
             printf("错误，请在给定的序号中选择\n");
