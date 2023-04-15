@@ -7,10 +7,10 @@
 
 #include "touristinfo.h"
 #include <string.h>
-void ShowPlanelist();
-void DownloadPlanelist();
-void UploadPlanelist();
-void ChangePlaneStarttime();
-void ChangePlaneEndtime();
-void ChangePlanePrice();
+void ShowPlanelist();//展示当前航线列表
+void DownloadPlanelist();//下载航线列表
+void UploadPlanelist();//上传航线列表
+void ChangePlaneStarttime();//改变飞机出发时间
+void ChangePlaneEndtime();//改变飞机到达时间
+void ChangePlanePrice();//改变飞机价格
 #endif //AIRSYSTEM_PLANE_H

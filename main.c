@@ -4,6 +4,7 @@
 #include "menu.h"
 #include "plane.h"
 #include "user.h"
+#include "order.h"
 
 int main() {
 
@@ -22,6 +23,8 @@ int main() {
 //    DownloadPlanelist();
 //    ShowPlanelist();
 //    UploadPlanelist();
-    ChangePlaneStarttime();
+//  ChangePlaneStarttime();
+    DownloadOrderlist();
+    ShowOrderlist();
     return 0;
 }

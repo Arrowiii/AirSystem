@@ -9,10 +9,10 @@ void DownloadOrderlist() {
         return;
     }
     while (!feof(fp)) {
-        order *new_order = (order *)malloc(sizeof(order));
-        fscanf(fp, "%s %s %s", new_order->name, new_order->number, new_order->orderid);
-        new_order->next = head;
-        head = new_order;
+        order *neworder = (order *)malloc(sizeof(order));
+        fscanf(fp, "%s %s %s", neworder->name, neworder->number, neworder->orderid);
+        neworder->next = head;
+        head = neworder;
     }
     fclose(fp);
 }
@@ -23,10 +23,17 @@ void SaveOrderlist() {
         printf("打开文件失败\n");
         return;
     }
-    order *current = head;
-    while (current != NULL) {
-        fprintf(fp, "%s %s %s\n", current->name, current->number, current->orderid);
-        current = current->next;
+    order *arrow = head;
+    while (arrow != NULL) {
+        fprintf(fp, "%s %s %s\n", arrow->name, arrow->number, arrow->orderid);
+        arrow = arrow->next;
     }
     fclose(fp);
+}
+void ShowOrderlist() {
+    order *arrow = head;
+    while (arrow != NULL) {
+        printf("用户名: %s, 飞机编号: %s, 订单编号: %s\n", arrow->name, arrow->number, arrow->orderid);
+        arrow = arrow->next;
+    }
 }
