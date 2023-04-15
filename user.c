@@ -116,7 +116,7 @@ void UserRegistration(){
     DownloadUserlist();
     char newname[20];
     int exist = 0;
-    printf("请输入您要注册的姓名:\n");
+    printf("请输入您要注册的用户名:\n");
     scanf("%s",newname);
     for (int i = 0; i < 20; i++) {
         if (strcmp(newname, userlist[i].name) == 0) {
@@ -135,7 +135,7 @@ int UserLogin(){
     int OK = 0;
     DownloadUserlist();
     char inputName[20], inputPassword[20];
-    printf("请输入您的姓名：");
+    printf("请输入您的用户名：");
     scanf("%s", inputName);
 
     int i;
@@ -205,7 +205,7 @@ int AdministratorLogin(){
     int OK = 0;
     DownloadUserlist();
     char inputName[20], inputPassword[20];
-    printf("请输入您的姓名：");
+    printf("请输入您的用户名：");
     scanf("%s", inputName);
 
     int i;

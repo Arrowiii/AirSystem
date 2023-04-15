@@ -19,8 +19,9 @@ int main() {
 //    AdministratorLogin();
 //    ChangeUserPhonenumber();
 //    InitializeUserPassword();
-    DownloadPlanelist();
-    ShowPlanelist();
-    UploadPlanelist();
+//    DownloadPlanelist();
+//    ShowPlanelist();
+//    UploadPlanelist();
+    ChangePlaneStarttime();
     return 0;
 }

@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 typedef struct user{
-    char name[20];//姓名
+    char name[20];//用户名
     char idnumber[20];//身份证号
     char phonenumber[20];//手机号
     char password[20];//用户密码
@@ -29,8 +29,9 @@ typedef struct plane{
 }plane;//飞机
 
 typedef struct order{
-//    char usernumber;
-//    char [10];
-//    int number;
-};
+    char name[20];//预定用户名
+    char number[20];//预定飞机编号
+    char orderid[20];//订单编号
+    struct order *next;//
+}order;
 #endif //AIRSYSTEM_TOURISTINFO_H
