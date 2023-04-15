@@ -18,4 +18,5 @@ void GetUserInfo(char* name);//获取用户信息
 void UploadUserlist();//更新txt文件使其存储最新的用户名单
 void ChangeUserPhonenumber();//修改用户手机号
 void InitializeUserPassword();//初始化用户密码
+
 #endif //AIRSYSTEM_USER_H

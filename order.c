@@ -17,7 +17,7 @@ void DownloadOrderlist() {
     fclose(fp);
 }
 
-void SaveOrderlist() {
+void UploadOrderlist() {
     FILE *fp = fopen("orderlist.txt", "w");
     if (fp == NULL) {
         printf("打开文件失败\n");
@@ -36,4 +36,7 @@ void ShowOrderlist() {
         printf("用户名: %s, 飞机编号: %s, 订单编号: %s\n", arrow->name, arrow->number, arrow->orderid);
         arrow = arrow->next;
     }
+}
+void BookOneTicket(){
+
 }

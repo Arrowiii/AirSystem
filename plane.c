@@ -3,13 +3,13 @@
 //
 
 #include "plane.h"
-plane planelist[10];
+plane planelist[50];
 int planenum;
 
 void DownloadPlanelist(){
 
     FILE *fp;
-    fp = fopen("planelist1.txt", "r");
+    fp = fopen("planelist.txt", "r");
     if(fp == NULL){
         printf("文件打开失败！\n");
         exit(1);
