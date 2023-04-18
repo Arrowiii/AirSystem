@@ -3,9 +3,9 @@
 //
 
 #include "plane.h"
-plane planelist[50];
+plane planelist[20];
 int planenum;
-
+plane newlist[20];
 void DownloadPlanelist(){
 
     FILE *fp;
@@ -113,3 +113,7 @@ void ChangePlanePrice(){
     printf("修改后%s飞机的单程价格为::%.2f元",planelist[num].number,planelist[num].price);
     UploadPlanelist();
 }
+
+void QueryBySeatAvailble(){
+
+}//按空余座位查询

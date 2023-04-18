@@ -4,9 +4,9 @@
 
 #ifndef AIRSYSTEM_QUERY_H
 #define AIRSYSTEM_QUERY_H
-void QueryByOrderid();//按订单编号查询
-void QueryByName();//按用户名查询
-void QueryBySeatAvailble();//按空余座位查询
+
+
+
 void QueryByDate();//按航班日期查询
 void QueryByStart();//按出发地查询
 void QueryByEnd();//按到达地查询
