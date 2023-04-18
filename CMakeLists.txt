@@ -3,4 +3,4 @@ project(AirSystem C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(AirSystem main.c touristinfo.h menu.h menu.c plane.h user.c user.h plane.c order.h order.c query.h query.c )
+add_executable(AirSystem main.c touristinfo.h menu.h menu.c plane.h user.c user.h plane.c order.h order.c)

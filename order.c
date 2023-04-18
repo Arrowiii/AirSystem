@@ -183,7 +183,7 @@ void QueryByName() {
             exist = 1;
         }
         if(exist == 1 ){
-            printf("查询到订单信息如下：用户名：%s航班编号：%s订单号；%s\n",
+            printf("查询到订单信息如下：用户名：%s 航班编号：%s 订单号；%s\n",
                    arrow->name,arrow->number,arrow->orderid);
             exist++;
         }
@@ -196,3 +196,34 @@ void QueryByName() {
 
     free(arrow);
 }
+void CountNumber(){
+    DownloadOrderlist();
+    char name[20];
+    printf("请输入您的订单用名：\n");
+    scanf("%s", name);
+    order *arrow = head;
+    int number = 0;
+    int exist = 0;
+    while(arrow != NULL){
+        if(strcmp(name, arrow->name) == 0){
+            exist = 1;
+        }
+        if(exist == 1 ){
+            printf("查询到订单信息如下：用户名：%s 航班编号：%s 订单号；%s\n",
+                   arrow->name,arrow->number,arrow->orderid);
+            exist++;
+            number++;
+        }
+
+        arrow = arrow->next;
+    }
+    if(!exist){
+        printf("没有找到订单信息!\n");
+    }
+    if(number){
+        printf("该用户共乘坐了%d次航班，真厉害！\n",number);
+    }
+    if(!number){
+        printf("用户没有乘坐过航班，呜呜呜\n");
+    }
+}//统计乘坐次数

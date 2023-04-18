@@ -14,7 +14,7 @@ int AdministratorLogin();//管理员登录
 void AddToUserlist(char*);//加入用户表
 void DownloadUserlist();//使当前数组存入txt文件中的用户名单
 void ShowUserlist();//展示用户表
-void GetUserInfo(char* name);//获取用户信息
+void GetUserInfo(char* );//获取用户信息
 void UploadUserlist();//更新txt文件使其存储最新的用户名单
 void ChangeUserPhonenumber();//修改用户手机号
 void InitializeUserPassword();//初始化用户密码

@@ -5,7 +5,6 @@
 #include "menu.h"
 #include "user.h"
 #include "plane.h"
-#include "query.h"
 #include "order.h"
 
 void ShowMenu1() {//main menu
@@ -88,14 +87,15 @@ void ShowMenu3(){//administrator login menu
 void ShowMenu4(){ //user menu
     printf("\n\n欢迎来到用户功能界面\n");
     printf("请选择你要执行的操作\n");
-    printf("1.预定航班\n2.查询航班\n3.用户统计\n4.返回上页\n");
+    printf("1.预定航班\n2.查询航班\n3.用户统计\n4.删除订单\n5.返回上页\n");
     int choice = GetChoice();
     switch(choice)
     {
         case 1:BookOneTicket();break;
         case 2:ShowMenu6();break;
         case 3:CountNumber();break;
-        case 4:;return;
+        case 4:DeleteOneTicket();
+        case 5:return;
         default:
             printf("错误，请在给定的序号中选择\n");
     }
@@ -145,9 +145,9 @@ void ShowMenu6(){
     printf("\n\n欢迎来到查询功能界面\n");
     printf("请选择你要执行的操作\n");
     printf("1.查看所有航班\n2.按用户名查询\n3.按空余座位查询\n"
-           "4.按航班日期查询\n5.按出发地查询\n6.按到达地查询\n"
-           "7.按出发时间排序\n8.按价格排序\n9.按订单编号查询\n"
-           "10.返回上页");
+           "4.按价格排序\n5.按出发地查询\n6.按到达地查询\n"
+           "7.按订单编号查询\n"
+           "8.返回上页");
     int choice = GetChoice();
     switch(choice)
     {
@@ -158,18 +158,14 @@ void ShowMenu6(){
         case 3:
             QueryBySeatAvailble();break;
         case 4:
-            QueryByDate();break;
+            SortByPrice();break;
         case 5:
             QueryByStart();break;
         case 6:
             QueryByEnd();break;
         case 7:
-            SortByStart();break;
-        case 8:
-            SortByPrice();break;
-        case 9:
             QueryByOrderid();break;
-        case 10:return;
+        case 8:return;
         default:
             printf("错误，请在给定的序号中选择\n");
     }

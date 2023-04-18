@@ -17,4 +17,5 @@ void DeleteOneTicket();//删除一个机票
 void DownloadPlanelistInOrder();//预定用，更新飞机名单
 void QueryByOrderid();//按订单编号查询，管理用
 void QueryByName();//按订单用名查询
+void CountNumber();//统计乘坐次数
 #endif //AIRSYSTEM_ORDER_H
