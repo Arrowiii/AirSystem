@@ -15,7 +15,7 @@ void GetUserInfo(char* name){
     }
     if(!exist){
         strcpy(userlist[usernum].name,name);
-        printf("请输入账号");scanf("%s",userlist[usernum].idnumber);
+        printf("请输入身份证号");scanf("%s",userlist[usernum].idnumber);
         printf("请输入电话号码");scanf("%s",userlist[usernum].phonenumber);
         printf("请输入密码");scanf("%s",userlist[usernum].password);
         printf("请输入密保问题");scanf("%s",userlist[usernum].question);
@@ -169,9 +169,11 @@ void PasswordRetrieve() {
     printf("请输入您的姓名：");
     scanf("%s", inputName);
     int i;
+    int exist = 0;
     for (i = 0; i < usernum; i++) {
         if (strcmp(userlist[i].name, inputName) == 0) {
             printf("欢迎回来，%s！\n", inputName);
+            exist = 1;
             printf("请输入你的身份证号");
             scanf("%s",inputID);
             if(strcmp(userlist[i].idnumber, inputID) == 0) {
@@ -193,10 +195,10 @@ void PasswordRetrieve() {
                 break;
             }
         }
-        else{
-            printf("查无此人哦!");
-            break;
-        }
+
+    }
+    if(!exist){
+        printf("查无此人哦!");
     }
     UploadUserlist();
     return;
@@ -226,7 +228,7 @@ int AdministratorLogin(){
             break;
         }
         else {
-            printf("错误！您不是管理或您不是人\n");
+            printf("错误！您不是管理\n");
             break;
         }
     }

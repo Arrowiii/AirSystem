@@ -37,6 +37,7 @@ void UploadOrderlist() {
     fclose(fp);
 }
 void ShowOrderlist() {
+    DownloadOrderlist();
     order *arrow = head;
     while (arrow != NULL) {
         printf("用户名: %s, 飞机编号: %s, 订单编号: %s\n", arrow->name, arrow->number, arrow->orderid);

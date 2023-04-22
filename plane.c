@@ -36,7 +36,8 @@ void ShowPlanelist(){
     printf("当前所有飞机信息如下:\n");
     for(int i = 0; i < 20; i++){
         if(strlen(planelist[i].number) == 0)  continue;
-        printf("编号:%s, 出发地:%s, 到达地:%s, 出发时间:%s, 到达时间:%s, 当前载客人数:%d, 载客总人数:%d, 单程价格:%.2f元/人\n",
+        printf("%d::编号:%s, 出发地:%s, 到达地:%s, 出发时间:%s, 到达时间:%s, 当前载客人数:%d, 载客总人数:%d, 单程价格:%.2f元/人\n",
+               i,
                planelist[i].number,
                planelist[i].start,
                planelist[i].end,
@@ -123,6 +124,7 @@ void QueryBySeatAvailble(){
         if(planelist[i].peopleall - planelist[i].peoplenow <= 0)
             continue;
         printf("编号:%s, 出发地:%s, 到达地:%s, 出发时间:%s, 到达时间:%s, 当前载客人数:%d, 载客总人数:%d, 单程价格:%.2f元/人\n",
+
                planelist[i].number,
                planelist[i].start,
                planelist[i].end,
